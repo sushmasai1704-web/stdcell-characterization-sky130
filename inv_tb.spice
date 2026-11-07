@@ -1,0 +1,21 @@
+* CMOS inverter, sky130, delay measurement
+.lib /home/sushma/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.temp 27
+.param supply=1.8
+
+Vdd vdd 0 {supply}
+Vin in 0 PULSE(0 {supply} 1n 100p 100p 5n 10n)
+
+XMn out in 0   0   sky130_fd_pr__nfet_01v8 w=0.42 l=0.15
+XMp out in vdd vdd sky130_fd_pr__pfet_01v8 w=0.84 l=0.15
+Cl out 0 10f
+
+.tran 10p 25n
+
+.control
+run
+meas tran tpHL trig v(in) val=0.9 rise=1 targ v(out) val=0.9 fall=1
+meas tran tpLH trig v(in) val=0.9 fall=1 targ v(out) val=0.9 rise=1
+quit
+.endc
+.end
