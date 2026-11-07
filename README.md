@@ -31,6 +31,7 @@ Two PMOS variants are compared: the standard `pfet_01v8` and the high-threshold 
 - Paths in `sweep.py` are specific to my machine; edit `LIB` and `NGSPICE` at the top to reuse.
 
 ## Run
-python3 sweep.py
-python3 sweep_hvt.py
-python3 plot.py # needs matplotlib and pandas
+
+    python3 sweep.py
+    python3 sweep_hvt.py
+    python3 plot.py   # needs matplotlib and pandas
